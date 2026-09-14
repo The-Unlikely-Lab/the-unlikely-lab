@@ -6,7 +6,7 @@ A personal research laboratory website focused on machine learning,
 density estimation, anomaly detection, and collider physics.
 
 The site is a static export hosted on GitHub Pages at
-[https://hiteshrasineni.github.io/the-unlikely-lab/](https://hiteshrasineni.github.io/the-unlikely-lab/).
+[https://the-unlikely-lab.github.io/the-unlikely-lab/](https://the-unlikely-lab.github.io/the-unlikely-lab/).
 
 ## Stack
 
