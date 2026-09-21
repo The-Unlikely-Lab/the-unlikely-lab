@@ -1,0 +1,1 @@
+{"background_color": "#ffffff", "description": "The Unlikely Lab — machine learning for collider physics.", "display": "standalone", "icons": [{"purpose": "any", "sizes": "64x64", "src": "/the-unlikely-lab/icon.svg", "type": "image/svg+xml"}], "name": "The Unlikely Lab", "short_name": "Unlikely Lab", "start_url": "/the-unlikely-lab/", "theme_color": "#ffffff"}

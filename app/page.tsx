@@ -2,11 +2,20 @@
 import Link from "next/link";
 import { getAllResearch, getNote } from "@/lib/content";
 import NoteList from "@/components/NoteList";
+import FaqJsonLd from "@/components/FaqJsonLd";
 
 export const metadata: Metadata = {
-  title: "The Unlikely Lab",
+  title: "The Unlikely Lab — Machine Learning for Collider Physics",
   description:
-    "Learning the expected. Searching for the unexpected. Research in machine learning, density estimation, anomaly detection, and collider physics.",
+    "The Unlikely Lab: independent research in machine learning, density estimation, likelihood-based anomaly detection, and collider physics with CMS Open Data.",
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: "The Unlikely Lab — Machine Learning for Collider Physics",
+    description:
+      "Learning the expected. Searching for the unexpected. Density estimation and anomaly detection with CMS Open Data.",
+    type: "website",
+    url: "/",
+  },
 };
 
 const researchSummaries: Record<string, { tagline: string; description: string }> = {
@@ -108,11 +117,15 @@ export default function HomePage() {
         </p>
         <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-1 text-[15px]">
           <li><Link href="/research">Research</Link></li>
+          <li><Link href="/publications">Publications</Link></li>
           <li><Link href="/notes">Notes</Link></li>
+          <li><Link href="/people">People</Link></li>
           <li><Link href="/code">Code</Link></li>
           <li><Link href="/about">Contact</Link></li>
+          <li><Link href="/search">Search</Link></li>
         </ul>
       </section>
+      <FaqJsonLd />
     </div>
   );
 }

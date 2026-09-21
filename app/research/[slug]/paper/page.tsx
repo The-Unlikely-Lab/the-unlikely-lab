@@ -19,13 +19,30 @@ export async function generateMetadata({
   const { slug } = await params;
   const paper = getPaper(slug);
   if (!paper) return {};
-  const firstParagraph = paper.manifest.title;
+  const doc = getResearch(slug);
+  const fm = doc?.frontmatter as ResearchFrontmatter | undefined;
+  const canonical = `/research/${slug}/paper`;
+  const SITE = "https://the-unlikely-lab.github.io/the-unlikely-lab";
   return {
     title: paper.manifest.title,
-    description: `Full HTML article: ${firstParagraph}.`,
+    description: `Full HTML article: ${paper.manifest.title} — The Unlikely Lab.`,
+    authors: fm?.publication?.authors?.map((name) => ({ name })),
+    alternates: { canonical },
     openGraph: {
       title: `${paper.manifest.title} | The Unlikely Lab`,
+      description: fm?.description ?? "Full HTML article from The Unlikely Lab.",
       type: "article",
+      url: canonical,
+      authors: fm?.publication?.authors,
+    },
+    other: {
+      "citation_title": paper.manifest.title,
+      ...(fm?.publication?.doi
+        ? {
+            "citation_doi": fm.publication.doi,
+            "citation_pdf_url": `${SITE}/research/${slug}/assets/paper.pdf`,
+          }
+        : {}),
     },
   };
 }

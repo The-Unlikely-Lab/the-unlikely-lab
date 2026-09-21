@@ -4,9 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "node scripts/paper/build.mjs --if-possible",
+    "prebuild": "node scripts/paper/build.mjs --if-possible && node scripts/seo-assets.mjs",
     "build": "next build",
+    "postbuild": "node scripts/seo-check.mjs",
     "paper:build": "node scripts/paper/build.mjs",
+    "seo:check": "node scripts/seo-check.mjs",
     "start": "npx --yes serve out"
   },
   "dependencies": {

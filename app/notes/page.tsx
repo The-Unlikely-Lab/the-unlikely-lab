@@ -3,9 +3,11 @@ import { groupNotesByCategory } from "@/lib/content";
 import NoteList from "@/components/NoteList";
 
 export const metadata: Metadata = {
-  title: "Notes",
+  title: "Notes — Scientific Notebook",
   description:
-    "A scientific notebook of mathematical, statistical, physical, and machine-learning concepts supporting the research at The Unlikely Lab.",
+    "Notes from The Unlikely Lab: density estimation, normalizing flows, neural spline flows, likelihood, Jacobians, and collider physics concepts.",
+  alternates: { canonical: "/notes" },
+  openGraph: { title: "Notes | The Unlikely Lab", type: "website", url: "/notes" },
 };
 
 export default function NotesIndexPage() {

@@ -13,7 +13,11 @@ import { getPaperSlugs } from "@/lib/paper";
 import { mdxComponents } from "@/components/MdxComponents";
 import ResearchHeader from "@/components/ResearchHeader";
 import PublicationInfo from "@/components/PublicationInfo";
+import CiteBox from "@/components/CiteBox";
+import ArticleJsonLd from "@/components/ArticleJsonLd";
 import { withBase } from "@/lib/paths";
+
+const SITE_URL = "https://the-unlikely-lab.github.io/the-unlikely-lab";
 
 export function generateStaticParams() {
   return getAllResearch().map((r) => ({ slug: r.slug }));
@@ -27,13 +31,35 @@ export async function generateMetadata({
   const { slug } = await params;
   const doc = getResearch(slug);
   if (!doc) return {};
+  const fm = doc.frontmatter as ResearchFrontmatter;
+  const canonical = `/research/${slug}`;
+  const authors = fm.publication?.authors?.map((name) => ({ name }));
   return {
-    title: doc.frontmatter.title,
-    description: doc.frontmatter.description,
+    title: fm.title,
+    description: fm.description,
+    keywords: fm.tags,
+    authors,
+    alternates: { canonical },
     openGraph: {
-      title: `${doc.frontmatter.title} | The Unlikely Lab`,
-      description: doc.frontmatter.description,
+      title: `${fm.title} | The Unlikely Lab`,
+      description: fm.description,
       type: "article",
+      url: canonical,
+      authors: fm.publication?.authors,
+    },
+    other: {
+      ...(fm.publication?.title
+        ? { "citation_title": fm.publication.title }
+        : { "citation_title": fm.title }),
+      ...(fm.publication?.authors
+        ? { "citation_author": fm.publication.authors }
+        : {}),
+      ...(fm.publication?.doi
+        ? {
+            "citation_doi": fm.publication.doi,
+            "citation_pdf_url": `${SITE_URL}/research/${slug}/assets/paper.pdf`,
+          }
+        : {}),
     },
   };
 }
@@ -65,6 +91,7 @@ export default async function ResearchPage({
 
   return (
     <article>
+      <ArticleJsonLd slug={slug} frontmatter={frontmatter} />
       <p className="mb-6 text-sm">
         <Link href="/research">← All research</Link>
       </p>
@@ -96,6 +123,8 @@ export default async function ResearchPage({
       )}
 
       <div className="mdx">{content}</div>
+
+      <CiteBox slug={slug} frontmatter={frontmatter} />
 
       {(frontmatter.codeUrl || frontmatter.dataUrl) && (
         <footer className="mt-12 border-t border-neutral-200 pt-5 text-[15px]">
