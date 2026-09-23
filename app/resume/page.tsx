@@ -140,17 +140,17 @@ export default function ResumePage() {
       <Section title="SELECTED PROJECTS">
         <Entry
           title="The Unlikely Lab — Personal Research Publication Platform"
-          right="hiteshrasineni.github.io/the-unlikely-lab"
+          right="the-unlikely-lab.github.io/the-unlikely-lab"
           meta={
             <>
               Code:{" "}
               <a
                 className={credClass}
-                href="https://github.com/HiteshRasineni/the-unlikely-lab"
+                href="https://github.com/The-Unlikely-Lab/the-unlikely-lab"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                github.com/HiteshRasineni/the-unlikely-lab
+                github.com/The-Unlikely-Lab/the-unlikely-lab
               </a>
             </>
           }
@@ -288,7 +288,7 @@ export default function ResumePage() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  hiteshrasineni.github.io/the-unlikely-lab/research/dijet-anomaly
+                  the-unlikely-lab.github.io/the-unlikely-lab/research/dijet-anomaly
                 </a>
               </span>
             </>

@@ -144,21 +144,21 @@ export default function BhavishyaResumePage() {
               Site:{" "}
               <a
                 className={credClass}
-                href="https://hiteshrasineni.github.io/the-unlikely-lab/"
+                href="https://the-unlikely-lab.github.io/the-unlikely-lab/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                hiteshrasineni.github.io/the-unlikely-lab
+                the-unlikely-lab.github.io/the-unlikely-lab
               </a>
               <span className="mx-2">·</span>
               Code:{" "}
               <a
                 className={credClass}
-                href="https://github.com/HiteshRasineni/the-unlikely-lab"
+                href="https://github.com/The-Unlikely-Lab/the-unlikely-lab"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                github.com/HiteshRasineni/the-unlikely-lab
+                github.com/The-Unlikely-Lab/the-unlikely-lab
               </a>
             </>
           }
