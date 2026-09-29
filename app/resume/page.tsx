@@ -40,10 +40,12 @@ const certifications = [
   },
 ];
 
+import Breadcrumbs from "@/components/Breadcrumbs";
+
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section className="mt-9">
-      <h2 className="border-b border-neutral-300 pb-1 text-base font-bold tracking-wide text-black">
+      <h2 className="border-b border-neutral-300 dark:border-neutral-700 pb-1 text-base font-bold tracking-wide text-black dark:text-white">
         {title}
       </h2>
       <div className="mt-3">{children}</div>
@@ -65,12 +67,12 @@ function Entry({
   return (
     <div className="mt-4">
       <div className="flex flex-wrap items-baseline justify-between gap-x-4">
-        <h3 className="text-[16px] font-semibold text-black">{title}</h3>
-        {right && <span className="text-[13px] italic text-neutral-500">{right}</span>}
+        <h3 className="text-[16px] font-semibold text-black dark:text-white">{title}</h3>
+        {right && <span className="text-[13px] italic text-neutral-500 dark:text-neutral-400">{right}</span>}
       </div>
-      {meta && <div className="mt-0.5 text-[13px] leading-6 text-neutral-600">{meta}</div>}
+      {meta && <div className="mt-0.5 text-[13px] leading-6 text-neutral-600 dark:text-neutral-400">{meta}</div>}
       {children && (
-        <ul className="mt-1.5 list-disc space-y-1 pl-5 text-[14px] leading-6 text-neutral-700">
+        <ul className="mt-1.5 list-disc space-y-1 pl-5 text-[14px] leading-6 text-neutral-700 dark:text-neutral-300">
           {children}
         </ul>
       )}
@@ -79,14 +81,21 @@ function Entry({
 }
 
 const credClass =
-  "text-neutral-500 underline decoration-neutral-300 underline-offset-2 hover:text-black hover:decoration-neutral-800";
+  "text-neutral-500 dark:text-neutral-400 underline decoration-neutral-300 dark:decoration-neutral-700 underline-offset-2 hover:text-black dark:hover:text-white hover:decoration-neutral-800 dark:hover:decoration-neutral-200";
 
 export default function ResumePage() {
   return (
     <div>
-      <header className="border-b border-neutral-200 pb-6 text-center">
-        <h1 className="text-2xl font-bold text-black sm:text-3xl">Hitesh Rasineni</h1>
-        <p className="mt-3 text-[13px] leading-6 text-neutral-600">
+      <Breadcrumbs
+        crumbs={[
+          { label: "People", href: "/people" },
+          { label: "Hitesh Rasineni" },
+          { label: "Resume" },
+        ]}
+      />
+      <header className="border-b border-neutral-200 dark:border-neutral-800 pb-6 text-center transition-colors">
+        <h1 className="text-2xl font-bold text-black dark:text-white sm:text-3xl">Hitesh Rasineni</h1>
+        <p className="mt-3 text-[13px] leading-6 text-neutral-600 dark:text-neutral-400">
           <a className={credClass} href="mailto:hiteshrasineni.07@gmail.com">hiteshrasineni.07@gmail.com</a>
           <span className="mx-2">·</span>+91 7901076965
           <span className="mx-2">·</span>
@@ -101,7 +110,7 @@ export default function ResumePage() {
             href={withBase("/resume.pdf")}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-neutral-500 underline decoration-neutral-300 underline-offset-2 hover:text-black"
+            className="text-neutral-500 dark:text-neutral-400 underline decoration-neutral-300 dark:decoration-neutral-700 underline-offset-2 hover:text-black dark:hover:text-white"
           >
             PDF version
           </a>
@@ -109,7 +118,7 @@ export default function ResumePage() {
       </header>
 
       <Section title="ABOUT ME">
-        <p className="max-w-prose text-[15px] leading-7 text-neutral-800">
+        <p className="max-w-prose text-[15px] leading-7 text-neutral-800 dark:text-neutral-200">
           CS undergraduate working at the intersection of Machine Learning, statistics, and High Energy Physics, with experience in density estimation and clustering for particle-physics data. Focused on advancing density estimation techniques and applying them to Beyond the Standard Model (BSM) physics.
         </p>
       </Section>
