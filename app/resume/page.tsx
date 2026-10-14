@@ -175,6 +175,10 @@ export default function ResumePage() {
             loss-curve visualization, and pytest suites for backend, scheduler, and worker
             components.
           </li>
+          <li>
+            Added a dataset registry with versioned MinIO storage and a workload-agnostic interface
+            running a from-scratch RealNVP normalizing flow in PyTorch.
+          </li>
         </Entry>
         <Entry
           title="ExperimentIQ — Query-Routing RAG over MLflow Experiments"
@@ -203,10 +207,14 @@ export default function ResumePage() {
             and evaluated routing and answer generation on an initial hand-authored 10-question
             benchmark.
           </li>
+          <li>
+            Shipped via docker-compose (Qdrant + API) with seed scripts and an eval harness
+            reporting per-category results.
+          </li>
         </Entry>
         <Entry
           title="The Unlikely Lab — Personal Research Publication Platform"
-          right="the-unlikely-lab.github.io/the-unlikely-lab"
+          right="Next.js, TypeScript, Pandoc"
           meta={
             <>
               Code:{" "}
@@ -222,18 +230,37 @@ export default function ResumePage() {
           }
         >
           <li>
-            Designed and deployed a full research-publication platform that hosts complete, typeset
-            HTML versions of arXiv-style physics papers (sections, numbered equations, figures,
-            tables, bibliography) alongside an MDX-driven content system for research notes and
-            project pages.
-          </li>
-          <li>
-            Built an automated LaTeX-to-HTML paper build pipeline with Pandoc, including
-            MathML/KaTeX rendering, figure/table validation reports, and per-paper static generation;
-            the site is a statically exported Next.js (React, TypeScript, Tailwind CSS) application
-            deployed via GitHub Actions CI/CD to GitHub Pages.
+            Designed, built, and deployed a research-publication platform hosting complete
+            typeset HTML versions of arXiv-style physics papers plus an MDX content system, with an
+            automated Pandoc LaTeX-to-HTML pipeline (MathML/KaTeX, figure/table validation) as a
+            statically exported Next.js app on GitHub Pages via CI/CD.
           </li>
         </Entry>
+      </Section>
+
+      <Section title="TECHNICAL SKILLS">
+        <div className="space-y-1 text-[14px] leading-6 text-neutral-700">
+          <p>
+            <span className="font-semibold text-black">Languages:</span> Python, Java, SQL,
+            JavaScript / TypeScript (React, Next.js)
+          </p>
+          <p>
+            <span className="font-semibold text-black">ML/Data:</span> PyTorch, scikit-learn, OpenCV,
+            Pandas, Matplotlib, Density Estimation (Normalizing Flows, Likelihood Ratios), RAG
+          </p>
+          <p>
+            <span className="font-semibold text-black">Web/Platform:</span> Next.js, React, FastAPI,
+            TypeScript, Tailwind CSS, MDX
+          </p>
+          <p>
+            <span className="font-semibold text-black">MLOps &amp; Infra:</span> MLflow, Qdrant,
+            Docker, Kubernetes, PostgreSQL, Redis, MinIO, Prometheus, Grafana, GitHub Actions (CI/CD)
+          </p>
+          <p>
+            <span className="font-semibold text-black">Tools:</span> Git, Pandoc, LaTeX, uproot,
+            Google Colab
+          </p>
+        </div>
       </Section>
 
       <Section title="RESEARCH EXPERIENCE">
@@ -356,27 +383,6 @@ export default function ResumePage() {
         </Entry>
       </Section>
 
-
-      <Section title="TECHNICAL SKILLS">
-        <div className="space-y-1 text-[14px] leading-6 text-neutral-700">
-          <p>
-            <span className="font-semibold text-black">Languages:</span> Python, Java, SQL,
-            JavaScript / TypeScript (React, Next.js)
-          </p>
-          <p>
-            <span className="font-semibold text-black">ML/Data:</span> PyTorch, scikit-learn, OpenCV,
-            Pandas, Matplotlib, MLflow, Qdrant, Density Estimation (Normalizing Flows, Likelihood Ratios), RAG
-          </p>
-          <p>
-            <span className="font-semibold text-black">Web/Platform:</span> Next.js, React, FastAPI,
-            TypeScript, Tailwind CSS, MDX
-          </p>
-          <p>
-            <span className="font-semibold text-black">Tools/Infra:</span> Git, GitHub Actions
-            (CI/CD), Docker, Kubernetes, PostgreSQL, Redis, MinIO, Prometheus, Grafana, Pandoc, LaTeX, uproot, Google Colab
-          </p>
-        </div>
-      </Section>
 
       <Section title="CERTIFICATIONS">
         <ul className="list-disc space-y-1.5 pl-5 text-[14px] leading-6 text-neutral-700">
