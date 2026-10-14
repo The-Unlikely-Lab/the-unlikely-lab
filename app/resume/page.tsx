@@ -119,7 +119,7 @@ export default function ResumePage() {
 
       <Section title="ABOUT ME">
         <p className="max-w-prose text-[15px] leading-7 text-neutral-800 dark:text-neutral-200">
-          CS undergraduate working at the intersection of Machine Learning, statistics, and High Energy Physics, with experience in density estimation (normalizing flows, likelihood-ratio methods) for collider data and in building cloud-native ML systems — experiment-orchestration platforms (FastAPI, Kubernetes, MLflow, Prometheus/Grafana) and query-routing RAG assistants over experiment tracking. Focused on advancing density estimation techniques and applying them to Beyond the Standard Model (BSM) physics, backed by production-grade MLOps.
+          Computer Science undergraduate focused on machine learning systems and scientific computing, with hands-on experience building cloud-native ML orchestration platforms using Docker, Kubernetes, MLflow, and observability tools. Research experience in neural density estimation and anomaly detection on collider data, alongside backend engineering, experiment tracking, and reproducible ML workflows.
         </p>
       </Section>
 
@@ -165,24 +165,15 @@ export default function ResumePage() {
           }
         >
           <li>
-            Built a cloud-native ML experiment-orchestration platform for HEP data with a full
-            vertical slice: a FastAPI backend (PostgreSQL/Alembic + Redis) validates specs,
-            resolves dataset references against a registry, and enqueues jobs; the scheduler
-            runs a QUEUED → SCHEDULING → RUNNING → COMPLETED/FAILED lifecycle (retries,
-            heartbeats, failure classification) via a pluggable executor — LocalDockerExecutor
-            and a KubernetesExecutor (indexed batch/v1 Jobs, per-job ConfigMaps, kind/minikube
-            manifests) — launching workers that report per-epoch metrics to MLflow + Redis; the
-            Next.js/TypeScript frontend submits experiments and renders loss curves through a
-            backend MLflow proxy.
+            Built a cloud-native ML experiment-orchestration platform using FastAPI, PostgreSQL,
+            Redis, Docker, and Kubernetes, with queued job scheduling, lifecycle tracking,
+            retries, heartbeats, and pluggable local and Kubernetes executors.
           </li>
           <li>
-            Separated storage so PostgreSQL owns lifecycle/scheduling state, the dataset registry
-            and artifact index, MLflow (SQLite + MinIO artifacts) owns params, metrics and model
-            artifacts, and MinIO owns datasets, checkpoints and logs; a workload registry runs a
-            from-scratch RealNVP-style normalizing flow in PyTorch (fully spec-driven) behind a
-            workload-agnostic interface; Prometheus/Pushgateway/cAdvisor + 4 provisioned Grafana
-            dashboards provide platform observability, all orchestrated by Docker Compose with
-            pytest suites in backend, scheduler, and worker.
+            Implemented experiment workers and MLflow tracking with MinIO-backed artifacts, plus
+            Prometheus/Grafana observability, a Next.js interface for experiment submission and
+            loss-curve visualization, and pytest suites for backend, scheduler, and worker
+            components.
           </li>
         </Entry>
         <Entry
@@ -203,19 +194,14 @@ export default function ResumePage() {
           }
         >
           <li>
-            Built a standalone RAG assistant that answers natural-language questions over MLflow
-            runs, flow configs, logs, and the dataset registry: a rule-based router sends
-            structured questions (metrics, params, comparisons) to the MLflow Tracking
-            search API and unstructured questions (logs, config text, notes) to Qdrant dense
-            vector retrieval, with an LLM answer builder citing run IDs, metric values, and
-            sources plus confidence scores.
+            Developed a containerized RAG assistant for MLflow experiments, routing structured
+            metric and parameter queries to the tracking API and unstructured questions to Qdrant
+            vector retrieval.
           </li>
           <li>
-            Shipped as a containerized FastAPI service (Qdrant + API via docker-compose) with a
-            hand-authored 10-question benchmark harness: 10/10 routing accuracy, 10/10 answer
-            accuracy, 0/10 hallucination rate, with per-category breakdowns
-            (metric_search/range/comparison, log_retrieval, config_qa) and seed/eval scripts for
-            reproducibility.
+            Implemented source-grounded responses with run-level references and confidence scores,
+            and evaluated routing and answer generation on an initial hand-authored 10-question
+            benchmark.
           </li>
         </Entry>
         <Entry
