@@ -148,36 +148,6 @@ export default function ResumePage() {
 
       <Section title="SELECTED PROJECTS">
         <Entry
-          title="The Unlikely Lab — Personal Research Publication Platform"
-          right="the-unlikely-lab.github.io/the-unlikely-lab"
-          meta={
-            <>
-              Code:{" "}
-              <a
-                className={credClass}
-                href="https://github.com/The-Unlikely-Lab/the-unlikely-lab"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                github.com/The-Unlikely-Lab/the-unlikely-lab
-              </a>
-            </>
-          }
-        >
-          <li>
-            Designed and deployed a full research-publication platform that hosts complete, typeset
-            HTML versions of arXiv-style physics papers (sections, numbered equations, figures,
-            tables, bibliography) alongside an MDX-driven content system for research notes and
-            project pages.
-          </li>
-          <li>
-            Built an automated LaTeX-to-HTML paper build pipeline with Pandoc, including
-            MathML/KaTeX rendering, figure/table validation reports, and per-paper static generation;
-            the site is a statically exported Next.js (React, TypeScript, Tailwind CSS) application
-            deployed via GitHub Actions CI/CD to GitHub Pages.
-          </li>
-        </Entry>
-        <Entry
           title="Cloud-Native ML Training Platform"
           right="FastAPI, Docker, Kubernetes, Next.js, PyTorch, MLflow"
           meta={
@@ -246,6 +216,36 @@ export default function ResumePage() {
             accuracy, 0/10 hallucination rate, with per-category breakdowns
             (metric_search/range/comparison, log_retrieval, config_qa) and seed/eval scripts for
             reproducibility.
+          </li>
+        </Entry>
+        <Entry
+          title="The Unlikely Lab — Personal Research Publication Platform"
+          right="the-unlikely-lab.github.io/the-unlikely-lab"
+          meta={
+            <>
+              Code:{" "}
+              <a
+                className={credClass}
+                href="https://github.com/The-Unlikely-Lab/the-unlikely-lab"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                github.com/The-Unlikely-Lab/the-unlikely-lab
+              </a>
+            </>
+          }
+        >
+          <li>
+            Designed and deployed a full research-publication platform that hosts complete, typeset
+            HTML versions of arXiv-style physics papers (sections, numbered equations, figures,
+            tables, bibliography) alongside an MDX-driven content system for research notes and
+            project pages.
+          </li>
+          <li>
+            Built an automated LaTeX-to-HTML paper build pipeline with Pandoc, including
+            MathML/KaTeX rendering, figure/table validation reports, and per-paper static generation;
+            the site is a statically exported Next.js (React, TypeScript, Tailwind CSS) application
+            deployed via GitHub Actions CI/CD to GitHub Pages.
           </li>
         </Entry>
       </Section>
