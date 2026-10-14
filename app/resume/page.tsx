@@ -119,7 +119,7 @@ export default function ResumePage() {
 
       <Section title="ABOUT ME">
         <p className="max-w-prose text-[15px] leading-7 text-neutral-800 dark:text-neutral-200">
-          CS undergraduate working at the intersection of Machine Learning, statistics, and High Energy Physics, with experience in density estimation and clustering for particle-physics data. Focused on advancing density estimation techniques and applying them to Beyond the Standard Model (BSM) physics.
+          CS undergraduate working at the intersection of Machine Learning, statistics, and High Energy Physics, with experience in density estimation (normalizing flows, likelihood-ratio methods) for collider data and in building cloud-native ML systems — experiment-orchestration platforms (FastAPI, Kubernetes, MLflow, Prometheus/Grafana) and query-routing RAG assistants over experiment tracking. Focused on advancing density estimation techniques and applying them to Beyond the Standard Model (BSM) physics, backed by production-grade MLOps.
         </p>
       </Section>
 
@@ -179,7 +179,7 @@ export default function ResumePage() {
         </Entry>
         <Entry
           title="Cloud-Native ML Training Platform"
-          right="FastAPI, Docker, Next.js, PyTorch"
+          right="FastAPI, Docker, Kubernetes, Next.js, PyTorch, MLflow"
           meta={
             <>
               Code:{" "}
@@ -195,21 +195,57 @@ export default function ResumePage() {
           }
         >
           <li>
-            Built a cloud-native ML experiment-orchestration platform for HEP data with a working
-            end-to-end vertical slice: a FastAPI backend (PostgreSQL/Alembic + Redis) validates
-            specs, resolves dataset references against a registry, and enqueues jobs; the scheduler
-            runs a QUEUED → SCHEDULING → RUNNING → COMPLETED/FAILED lifecycle (with retries) via a
-            pluggable executor (Docker now, Kubernetes stubbed), launching workload containers that
-            report per-epoch metrics to MLflow + Redis; the Next.js/TypeScript frontend submits
-            experiments and renders loss curves through a backend MLflow proxy.
+            Built a cloud-native ML experiment-orchestration platform for HEP data with a full
+            vertical slice: a FastAPI backend (PostgreSQL/Alembic + Redis) validates specs,
+            resolves dataset references against a registry, and enqueues jobs; the scheduler
+            runs a QUEUED → SCHEDULING → RUNNING → COMPLETED/FAILED lifecycle (retries,
+            heartbeats, failure classification) via a pluggable executor — LocalDockerExecutor
+            and a KubernetesExecutor (indexed batch/v1 Jobs, per-job ConfigMaps, kind/minikube
+            manifests) — launching workers that report per-epoch metrics to MLflow + Redis; the
+            Next.js/TypeScript frontend submits experiments and renders loss curves through a
+            backend MLflow proxy.
           </li>
           <li>
-            Separated storage responsibilities so PostgreSQL owns lifecycle/scheduling state, the
-            dataset registry and artifact index, MLflow (SQLite) owns params, metrics and model
-            artifacts, and MinIO owns datasets, checkpoints and logs; a pluggable worker workload
-            registry runs a from-scratch RealNVP-style normalizing flow in PyTorch (architecture
-            fully spec-driven) alongside a no-op workload, all orchestrated by a docker-compose
-            stack with pytest suites in the backend and worker.
+            Separated storage so PostgreSQL owns lifecycle/scheduling state, the dataset registry
+            and artifact index, MLflow (SQLite + MinIO artifacts) owns params, metrics and model
+            artifacts, and MinIO owns datasets, checkpoints and logs; a workload registry runs a
+            from-scratch RealNVP-style normalizing flow in PyTorch (fully spec-driven) behind a
+            workload-agnostic interface; Prometheus/Pushgateway/cAdvisor + 4 provisioned Grafana
+            dashboards provide platform observability, all orchestrated by Docker Compose with
+            pytest suites in backend, scheduler, and worker.
+          </li>
+        </Entry>
+        <Entry
+          title="ExperimentIQ — Query-Routing RAG over MLflow Experiments"
+          right="FastAPI, MLflow, Qdrant, sentence-transformers"
+          meta={
+            <>
+              Code:{" "}
+              <a
+                className={credClass}
+                href="https://github.com/HiteshRasineni/ExperimentIQ"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                github.com/HiteshRasineni/ExperimentIQ
+              </a>
+            </>
+          }
+        >
+          <li>
+            Built a standalone RAG assistant that answers natural-language questions over MLflow
+            runs, flow configs, logs, and the dataset registry: a rule-based router sends
+            structured questions (metrics, params, comparisons) to the MLflow Tracking
+            search API and unstructured questions (logs, config text, notes) to Qdrant dense
+            vector retrieval, with an LLM answer builder citing run IDs, metric values, and
+            sources plus confidence scores.
+          </li>
+          <li>
+            Shipped as a containerized FastAPI service (Qdrant + API via docker-compose) with a
+            hand-authored 10-question benchmark harness: 10/10 routing accuracy, 10/10 answer
+            accuracy, 0/10 hallucination rate, with per-category breakdowns
+            (metric_search/range/comparison, log_retrieval, config_qa) and seed/eval scripts for
+            reproducibility.
           </li>
         </Entry>
       </Section>
@@ -343,15 +379,15 @@ export default function ResumePage() {
           </p>
           <p>
             <span className="font-semibold text-black">ML/Data:</span> PyTorch, scikit-learn, OpenCV,
-            Pandas, Matplotlib, Density Estimation (Normalizing Flows, Likelihood Ratios)
+            Pandas, Matplotlib, MLflow, Qdrant, Density Estimation (Normalizing Flows, Likelihood Ratios), RAG
           </p>
           <p>
-            <span className="font-semibold text-black">Web/Platform:</span> Next.js, React,
+            <span className="font-semibold text-black">Web/Platform:</span> Next.js, React, FastAPI,
             TypeScript, Tailwind CSS, MDX
           </p>
           <p>
             <span className="font-semibold text-black">Tools/Infra:</span> Git, GitHub Actions
-            (CI/CD), Docker, Pandoc, LaTeX, uproot, Google Colab
+            (CI/CD), Docker, Kubernetes, PostgreSQL, Redis, MinIO, Prometheus, Grafana, Pandoc, LaTeX, uproot, Google Colab
           </p>
         </div>
       </Section>
